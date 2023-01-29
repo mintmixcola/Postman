@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "ceb7ffdb-7cef-4b94-a573-056d1024df11",
+		"name": "XdclassInterfaceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "首页模块",
+			"item": [
+				{
+					"name": "分类列表",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"yuming\", \"https://api.xdclass.net\");\r",
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"pm.test(\"检验响应时间是否少于200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.xdclass.net/pub/api/v1/web/all_category",
+							"protocol": "https",
+							"host": [
+								"api",
+								"xdclass",
+								"net"
+							],
+							"path": [
+								"pub",
+								"api",
+								"v1",
+								"web",
+								"all_category"
+							]
+						},
+						"description": "无参"
+					},
+					"response": []
+				},
+				{
+					"name": "视频卡片",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{yuming}}/pub/api/v1/web/index_card",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"pub",
+								"api",
+								"v1",
+								"web",
+								"index_card"
+							]
+						},
+						"description": "无参"
+					},
+					"response": []
+				},
+				{
+					"name": "视频详情",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{yuming}}/pub/api/v1/web/video_detail?video_id={{video_idv}}",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"pub",
+								"api",
+								"v1",
+								"web",
+								"video_detail"
+							],
+							"query": [
+								{
+									"key": "video_id",
+									"value": "{{video_idv}}"
+								}
+							]
+						},
+						"description": "参数名\t解释\r\nvideo_id\t视频id"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户模块",
+			"item": [
+				{
+					"name": "用户登录",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "{{Content-Typev}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{yuming}}/pub/api/v1/web/web_login?phone={{phonev}}&pwd={{pwdv}}",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"pub",
+								"api",
+								"v1",
+								"web",
+								"web_login"
+							],
+							"query": [
+								{
+									"key": "phone",
+									"value": "{{phonev}}"
+								},
+								{
+									"key": "pwd",
+									"value": "{{pwdv}}"
+								}
+							]
+						},
+						"description": "请求头\t解释\r\nContent-Type\tapplication/x-www-form-urlencoded\r\n参数名\t解释\r\nphone\t注册手机号\r\npwd\t响应数据"
+					},
+					"response": []
+				},
+				{
+					"name": "用户个人信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token_value\", \"xdclasseyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4ZGNsYXNzIiwicm9sZXMiOiIxIiwiaW1nIjoiaHR0cHM6Ly94ZC12aWRlby1wYy1pbWcub3NzLWNuLWJlaWppbmcuYWxpeXVuY3MuY29tL3hkY2xhc3NfcHJvL2RlZmF1bHQvaGVhZF9pbWcvMjEuanBlZyIsImlkIjo2NzUwMjIsIm5hbWUiOiJkYXNkYWRhc2QxMTEiLCJpYXQiOjE2NTM1NTEzNzEsImV4cCI6MTY1NDE1NjE3MX0.6bCUP9rv4w8FnurKU6oerGTHKlZjTYdowFQr0AhBEqE\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{tokenv}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{yuming}}/pub/api/v1/web/user_info",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"pub",
+								"api",
+								"v1",
+								"web",
+								"user_info"
+							]
+						},
+						"description": "请求头\t解释\r\ntoken\t登录接口返回token"
+					},
+					"response": []
+				},
+				{
+					"name": "我的订单",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{tokenv}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{yuming}}/user/api/v1/order/find_orders?=",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"user",
+								"api",
+								"v1",
+								"order",
+								"find_orders"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						},
+						"description": "请求头\t解释\r\ntoken\t登录接口返回的token值"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "收藏模块",
+			"item": [
+				{
+					"name": "新增收藏",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token_value}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{yuming}}/user/api/v1/favorite/save?video_id={{video_idv}}",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"user",
+								"api",
+								"v1",
+								"favorite",
+								"save"
+							],
+							"query": [
+								{
+									"key": "video_id",
+									"value": "{{video_idv}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "我的收藏",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"检测状态码是否为两百\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"校验响应体是否符合预期\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"pm.test(\"校验响应时间是否少于指定时间\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{tokenv}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{yuming}}/user/api/v1/favorite/page",
+							"host": [
+								"{{yuming}}"
+							],
+							"path": [
+								"user",
+								"api",
+								"v1",
+								"favorite",
+								"page"
+							]
+						},
+						"description": "无参"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "yuming",
+			"value": ""
+		}
+	]
+}
